@@ -38,25 +38,23 @@ test('Validation date', () => {
 describe('Validation illegal arguments', () => {
     //TODO: hacer las verificaciones
 
-    test('Dias de la semana', () => {
-        //@param {String} weekday opciones ('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun')
-        
-    });
-     
+    test('(closeHour - openHour) < 0', () => {
+        expect(() => {
+            createEvent(weekday, week, 14, 8);
+        }).toThrow(Error);
+      });
 
-    test('Semanas posibles', () => {
-        //@param {int} week opciones (1,2,3,4,5,...)
-    })
+      test('week < 0', () => {
+        expect(() => {
+            createEvent(weekday, -1, openHour, closeHour);
+        }).toThrow();
+      });
 
-    test('Open Hour', () => {
-        //@param {int} openHour opciones (8,9,10,...,20,21,21,23,24)
-
-    })
-
-    test('closeHour', () => {
-        //@param {int} closeHour opciones (8,9,10,...,20,21,21,23,24)
-
-    })
+      test('!Object.keys(NUM_DAY).some(key => key === weekday', () => {
+        expect(() => {
+            createEvent('sabadito', week, openHour, closeHour);
+        }).toThrow(Error);
+      });
 });
 
 
